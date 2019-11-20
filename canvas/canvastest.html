@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,
+        body,
+        canvas {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 0;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas_01" width="400" height="400">随机线条100个</canvas>
+    <canvas id="canvas_02" width="400" height="400">模拟倒计时</canvas>
+    <canvas id="canvas_03" width="400" height="400">模拟钟表</canvas>
+
+    <!-- **************canvas_01************** -->
+    <script>
+        let arr = [];
+        // 随机颜色值 - return string类型'#abc'
+        function random_color() {
+            let a = Math.floor(Math.random() * 16).toString(16);
+            let b = Math.floor(Math.random() * 16).toString(16);
+            let c = Math.floor(Math.random() * 16).toString(16);
+            return "#" + a + b + c;
+        }
+        // 重绘画板
+        function paintCanvas_01(jsons, ctx) {
+            for (let arr of jsons) {
+                ctx.beginPath();
+                ctx.moveTo(arr.x1, arr.y1);
+                ctx.lineTo(arr.x2, arr.y2);
+                let a = ctx.createLinearGradient(arr.x1, arr.y1, arr.x2, arr.y2);
+                a.addColorStop(0, arr.color_0);
+                a.addColorStop(1, arr.color_1);
+                ctx.strokeStyle = a;
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+        // 画板
+        let canvas_01 = document.querySelector("#canvas_01");
+        if (canvas_01.getContext) {
+            let ctx = canvas_01.getContext("2d");
+
+            let timer = setInterval(() => {
+                // 开始坐标 & 结束坐标
+                let x1 = Math.floor(Math.random() * 400);
+                let y1 = Math.floor(Math.random() * 400);
+                let x2 = Math.floor(Math.random() * 80) - 40 + x1;
+                let y2 = Math.floor(Math.random() * 80) - 40 + y1;
+                // 开始颜色 & 结束颜色
+                let color_0 = random_color();
+                let color_1 = color_0
+                //let color_1 = random_color();
+                let json = {
+                    x1: x1,
+                    y1: y1,
+                    x2: x2,
+                    y2: y2,
+                    color_0: color_0,
+                    color_1: color_1,
+                };
+                arr.push(json);
+                arr.length === 100 ? arr.splice(0, 1) : 0;
+                // 先清空画板
+                ctx.clearRect(0, 0, canvas_01.width, canvas_01.height);
+                paintCanvas_01(arr, ctx);
+            }, 0)
+        }
+    </script>
+    <!-- **************canvas_02************** -->
+    <script>
+        let endMath = 0;
+        let canvas_02 = document.querySelector("#canvas_02");
+        if (canvas_02.getContext) {
+            let ctx = canvas_02.getContext("2d");
+            let timer = setInterval(() => {
+                // 先清空画板
+                ctx.clearRect(0, 0, canvas_02.width, canvas_02.height);
+
+                ctx.beginPath();
+                ctx.arc(200, 200, 150, 0, 2 * Math.PI, false);
+                ctx.stroke();
+                /*画一个以（x,y）为圆心的以radius为半径的圆弧（圆），
+                从startAngle开始到endAngle结束，
+                按照anticlockwise给定的方向（默认为顺时针）来生成。*/
+                ctx.closePath();
+
+                // 0-2
+                endMath = endMath > 2 ? 0 : endMath
+
+                ctx.beginPath();
+                ctx.moveTo(200, 200)
+                ctx.arc(200, 200, 100, 0 + 1.5 * Math.PI, endMath * Math.PI + 1.5 * Math.PI, false);
+                ctx.fill();
+                ctx.closePath();
+                endMath += 0.008
+            }, 1)
+        }
+    </script>
+    <!-- **************canvas_03************** -->
+    <script>
+        let canvas_03 = document.querySelector("#canvas_03");
+        if (canvas_03.getContext) {
+            let ctx = canvas_03.getContext("2d");
+            let timer = () => {
+                // 先清空画板
+                ctx.clearRect(0, 0, canvas_03.width, canvas_03.height);
+
+                // 画圆
+                ctx.beginPath();
+                ctx.strokeStyle = '#000000'
+                ctx.arc(200, 200, 150, 0, 2 * Math.PI, false);
+                ctx.stroke();
+                ctx.closePath();
+
+                // 绘制文本
+                ctx.font = "20px serif";
+                ctx.textAlign = "center";
+                for (let i = 1; i <= 12; i++) {
+                    ctx.fillText(i, 120 * Math.sin(i / 6 * Math.PI) + 200, -120 * Math.cos(i / 6 * Math.PI) + 210)
+                }
+
+                let date = new Date();
+                let s = date.getSeconds();
+                let m = date.getMinutes() + s / 60;
+                let h = date.getHours() + m / 60;
+
+                // 时针hours
+                ctx.beginPath();
+                ctx.strokeStyle = '#000000';
+                ctx.moveTo(200, 200);
+                ctx.lineTo(60 * Math.sin(h / 6 * Math.PI) + 200, -60 * Math.cos(h / 6 * Math.PI) + 200);
+                ctx.stroke();
+                ctx.closePath();
+
+                // 分针minutes
+                ctx.beginPath();
+                ctx.strokeStyle = '#000000';
+                ctx.moveTo(200, 200);
+                ctx.lineTo(80 * Math.sin(m / 30 * Math.PI) + 200, -80 * Math.cos(m / 30 * Math.PI) + 200);
+                ctx.stroke();
+                ctx.closePath();
+
+                // 秒针seconds
+                ctx.beginPath();
+                ctx.strokeStyle = '#ff0000';
+                ctx.moveTo(200, 200);
+                ctx.lineTo(100 * Math.sin(s / 30 * Math.PI) + 200, -100 * Math.cos(s / 30 * Math.PI) + 200);
+                ctx.stroke();
+                ctx.closePath();
+            }
+            timer();
+            setInterval(timer, 1000);
+        }
+    </script>
+</body>
+
+</html>
