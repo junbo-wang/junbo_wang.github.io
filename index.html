@@ -1,64 +1,106 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" sizes="any" href="./icon.ico">
-    <title>junbo_wang's blog</title>
-    <style>
-        body,div,ul,li{
-            margin: 0;
-            padding: 0;
-        }
-        .divBox{
-            width: 900px;
-            height: 500px;
-            /*background: #f00;*/
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -250px -450px;
-        }
-        .topBar{
-            text-align: center;
-            font-size: 2rem;
-        }
-        .listBox{
-            list-style: none;
-            margin-top: 20px;
-            display: flex;
-            justify-content: start;
-            flex-wrap: wrap;
-        }
-        .listBox>li{
-            width: 33.333333%;
-            height: 20px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        a{
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
-            background: #f80;
-            color: #fff;
-            font-size: 1.5rem;
-            position: relative;
-            top: 0;
-        }
-        a:hover{
-            transition: all 0.3s;
-            top: -3px;
-            box-shadow: 0 5px 5px #eee;
-        }
-    </style>
+    <title>junbo_wang's personal resume</title>
+
+    <link rel="stylesheet" href="./index/bootstrap.css">
+    <link rel="stylesheet" href="./index/index.css">
 </head>
+
 <body>
-<div class="divBox">
-    <div class="topBar">项目展示</div>
-    <ul class="listBox">
-        <li><a href="./mineSweeping/mineSweeping.html">扫雷</a></li>
-        <li><a href="./canvas/canvastest.html">canvas动画</a></li>
-    </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="selfPart">
+                <img src="https://c-ssl.duitang.com/uploads/item/201805/25/20180525175518_dbyte.thumb.700_0.jpg"
+                     alt="images" class="img-responsive img-circle center-block">
+                <h3>王俊博</h3>
+                <h5>
+                    <span>黑龙江·牡丹江</span>
+                    <span>本科</span>
+                    <span>web全栈方向</span>
+                </h5>
+                <div class="tellMe"></div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="content">
+
+                <h4>基本信息</h4>
+                <p>
+                    <span class="span_key">性别</span>
+                    <span class="span_value">男</span>
+                </p>
+                <p>
+                    <span class="span_key">身高</span>
+                    <span class="span_value">174cm</span>
+                </p>
+                <p>
+                    <span class="span_key">出生日期</span>
+                    <span class="span_value">1996 年 03 月</span>
+                </p>
+                <p>
+                    <span class="span_key">手机</span>
+                    <span class="span_value"><a href="tel:13359889498">133 5988 9498</a></span>
+                </p>
+                <p>
+                    <span class="span_key">E-Mail</span>
+                    <span class="span_value"><a href="mailto:13359889498@163.com">13359889498@163.com</a></span>
+                </p>
+
+                <hr/>
+
+                <h4>职业技能</h4>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <span class="span_key">HTML</span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <span class="span_key">CSS</span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <span class="span_key">JavaScript</span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <span class="span_key">Java</span>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" style="width: 0"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <hr/>
+
+                <h4>项目展示</h4>
+                <p>
+                    <a href="./mineSweeping/mineSweeping.html" class="btn btn-info show_href">扫雷</a>
+                    <a href="./canvas/canvastest.html" class="btn btn-info show_href">canvas动画</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
 </body>
+
 </html>
