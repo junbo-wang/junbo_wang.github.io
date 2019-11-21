@@ -64,7 +64,7 @@
                 let y2 = Math.floor(Math.random() * 80) - 40 + y1;
                 // 开始颜色 & 结束颜色
                 let color_0 = random_color();
-                let color_1 = color_0
+                let color_1 = color_0;
                 //let color_1 = random_color();
                 let json = {
                     x1: x1,
@@ -101,11 +101,11 @@
                 ctx.closePath();
 
                 // 0-2
-                endMath = endMath > 2 ? 0 : endMath
+                endMath = endMath > 2 ? 0 : endMath;
 
                 ctx.beginPath();
-                ctx.moveTo(200, 200)
-                ctx.arc(200, 200, 100, 0 + 1.5 * Math.PI, endMath * Math.PI + 1.5 * Math.PI, false);
+                ctx.moveTo(200, 200);
+                ctx.arc(200, 200, 100, 1.5 * Math.PI, endMath * Math.PI + 1.5 * Math.PI, false);
                 ctx.fill();
                 ctx.closePath();
                 endMath += 0.008
@@ -123,7 +123,7 @@
 
                 // 画圆
                 ctx.beginPath();
-                ctx.strokeStyle = '#000000'
+                ctx.strokeStyle = '#000000';
                 ctx.arc(200, 200, 150, 0, 2 * Math.PI, false);
                 ctx.stroke();
                 ctx.closePath();

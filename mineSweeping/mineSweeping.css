@@ -24,11 +24,19 @@ td{
 }
 .topBar>button{
     margin-top: 20px;
-    width: 150px;
-    height: 50px;
-    font-size: 20px;
-    background: #f80;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 4px;
     color: #fff;
-    border: 0;
-    border-radius: 10px;
+    background-color: #5bc0de;
+    border: 1px solid #46b8da;
+}
+.topBar>button:hover,.topBar>button:active {
+    background-color: #31b0d5;
+    border-color: #269abc;
 }
